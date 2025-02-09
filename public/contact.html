@@ -5,7 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles Slider</title>
     <style>
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         .navbar {
             position: fixed;
             top: 0;
@@ -18,14 +35,13 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            font-family: "Times New Roman", Times, serif;
         }
-
+        
         .logo {
             font-size: 32px;
             font-weight: bold;
         }
-
+        
         .nav-links {
             list-style: none;
             display: flex;
@@ -33,40 +49,21 @@
             padding-right: 40px;
             flex-wrap: wrap;
         }
-
+        
         .nav-links li {
             display: inline;
         }
-
-        .nav-links a {
+        
+        .nav-links a, .active {
             color: white;
             text-decoration: none;
-            font-size: 25px;
+            font-size: 20px;
         }
-
-        .active {
-            color: white;
-            font-size: 25px;
-        }
-
+        
         .nav-links a:hover {
             text-decoration: underline;
         }
-
-       
-        body {
-            font-family: "Poppins", sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f8f9fa;
-            color: #333;
-            text-align: center;
-            height: 100vh; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        
 
         main {
             flex: 1;
@@ -74,7 +71,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin-top: 70px; 
+            margin-top: 70px;
         }
 
         .articles-slider-container {
@@ -89,12 +86,11 @@
         }
 
         .articles-slider-container h2 {
-            font-size: 30px;
+            font-size: 24px;
             color: #222;
             margin-bottom: 20px;
         }
 
-        
         .slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
@@ -104,7 +100,7 @@
         .slide {
             flex: 0 0 100%;
             box-sizing: border-box;
-            background: linear-gradient(135deg, #d5ae11, #055727, #4d48b5, #d43a5e  );
+            background: linear-gradient(135deg, #d5ae11, #055727, #4d48b5, #d43a5e);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -114,8 +110,7 @@
         .slide a {
             text-decoration: none;
             color: #f6fbfb;
-            
-            font-size: 45px;
+            font-size: 22px;
             font-family: "Times New Roman", Times, serif;
         }
 
@@ -123,7 +118,6 @@
             text-decoration: underline;
         }
 
-        
         .prev, .next {
             position: absolute;
             top: 50%;
@@ -145,17 +139,27 @@
         .prev { left: 10px; }
         .next { right: 10px; }
 
-       
         @media (max-width: 768px) {
-            .slide {
-                width: 100%;
+            .logo {
+                font-size: 24px;
+            }
+            .nav-links a {
+                font-size: 18px;
+            }
+            .articles-slider-container h2 {
+                font-size: 20px;
+            }
+            .slide a {
+                font-size: 18px;
+            }
+            .prev, .next {
+                font-size: 16px;
+                padding: 8px 12px;
             }
         }
     </style>
 </head>
 <body>
-
-   
     <nav class="navbar">
         <div class="logo">GenzPass</div>
         <ul class="nav-links">
@@ -165,7 +169,6 @@
         </ul>
     </nav>
 
-    
     <main>
         <div class="articles-slider-container">
             <h2>Related Articles</h2>
@@ -206,7 +209,8 @@
         </div>
     </main>
 
-    
+
+
     <script>
         const slider = document.querySelector('.slider');
         const slides = document.querySelectorAll('.slide');
@@ -228,12 +232,10 @@
             updateSliderPosition();
         });
 
-       
         setInterval(() => {
             index = (index + 1) % slides.length;
             updateSliderPosition();
-        }, 1000);
+        }, 3000);
     </script>
-
 </body>
 </html>
