@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles Slider</title>
+    <style>
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: black;
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            padding-right: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+        .active {
+            color: white;
+            font-size: 25px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+       
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+            height: 100vh; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 70px; 
+        }
+
+        .articles-slider-container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .articles-slider-container h2 {
+            font-size: 30px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #d5ae11, #055727, #4d48b5, #d43a5e  );
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .slide a {
+            text-decoration: none;
+            color: #f6fbfb;
+            
+            font-size: 45px;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .slide a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background: #333;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+       
+        @media (max-width: 768px) {
+            .slide {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <nav class="navbar">
+        <div class="logo">GenzPass</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><span class="active">Research</span></li>
+        </ul>
+    </nav>
+
+    
+    <main>
+        <div class="articles-slider-container">
+            <h2>Related Articles</h2>
+            <div class="slider">
+                <div class="slide">
+                    <a href="https://www.csoonline.com/article/534628/the-biggest-data-breaches-of-the-21st-century.html" target="_blank">
+                        <h3>The Biggest Data Breaches of the 21st Century</h3>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.ndtv.com/world-news/995-crore-passwords-stolen-in-biggest-data-breach-ever-report-6051577" target="_blank">
+                        <h3>995 Crore Passwords Stolen In Biggest Data Breach Ever</h3>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.beyondtrust.com/blog/entry/how-compromised-passwords-lead-to-data-breaches" target="_blank">
+                        <h3>How Compromised Passwords Lead to Data Breaches & How to Prevent Them</h3>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.army.mil/article/280417/secure_our_world_cecom_recommends_strong_passwords_and_password_managers" target="_blank">
+                        <h3>Secure our world — CECOM recommends strong passwords and password managers</h3>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.semafor.com/article/07/09/2024/nearly-10-billion-passwords-leaked-in-what-could-be-biggest-ever-breach" target="_blank">
+                        <h3>Nearly 10 billion passwords leaked in what may be biggest dataset of its kind ever</h3>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.securitymagazine.com/articles/100765-78-of-people-use-the-same-password-across-multiple-accounts" target="_blank">
+                        <h3>78% of people use the same passwords across multiple accounts</h3>
+                    </a>
+                </div>
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+    </main>
+
+    
+    <script>
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let index = 0;
+
+        function updateSliderPosition() {
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        nextButton.addEventListener('click', () => {
+            index = (index + 1) % slides.length;
+            updateSliderPosition();
+        });
+
+        prevButton.addEventListener('click', () => {
+            index = (index - 1 + slides.length) % slides.length;
+            updateSliderPosition();
+        });
+
+       
+        setInterval(() => {
+            index = (index + 1) % slides.length;
+            updateSliderPosition();
+        }, 1000);
+    </script>
+
+</body>
+</html>

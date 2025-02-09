@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <nav class="navbar">
+        <div class="logo">GenzPass</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Research</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="password-container1">
+            <h2>Password Strength Checker</h2>
+            <div class="input-container">
+                <input type="text" id="password" class="input" placeholder="Enter your password">
+            </div>
+            <div id="result" class="strength"></div>
+            <button class="btn" onclick="checkPassword()">Check Strength</button>
+        </div>
+    </main>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            const result = document.getElementById("result");
+
+            if (password.length === 0) {
+                result.textContent = "";
+                result.style.backgroundColor = "transparent";
+                return;
+            }
+
+            const charsetSize = calculateCharsetSize(password);
+            const totalCombinations = Math.pow(charsetSize, password.length);
+            const attemptsPerSecond = 1e9;
+            const crackTimeSeconds = totalCombinations / attemptsPerSecond;
+            const readableTime = formatTime(crackTimeSeconds);
+
+            result.textContent = `Estimated Crack Time: ${readableTime}`;
+result.style.backgroundColor = getStrengthColor(crackTimeSeconds);
+result.style.color = "white"; 
+result.style.fontSize = "24px";  
+result.style.fontWeight = "bold";  
+result.style.borderRadius = "10px"; 
+
+        }
+
+        function calculateCharsetSize(password) {
+            let size = 0;
+            if (/[a-z]/.test(password)) size += 26;
+            if (/[A-Z]/.test(password)) size += 26;
+            if (/[0-9]/.test(password)) size += 10;
+            if (/[^a-zA-Z0-9]/.test(password)) size += 32;
+            return size || 1;
+        }
+
+        function formatTime(seconds) {
+            if (seconds < 60) return `${Math.floor(seconds)} seconds`;
+            if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes`;
+            if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours`;
+            if (seconds < 31536000) return `${Math.floor(seconds / 86400)} days`;
+            if (seconds < 3.154e+8) return `${Math.floor(seconds / 31536000)} years`;
+            return `${(seconds / 3.154e+8).toFixed(2)} centuries`;
+        }
+
+        function getStrengthColor(seconds) {
+            if (seconds < 60) return "#f0f8154d";
+            if (seconds < 3600) return "#f0f8154d";
+            if (seconds < 86400) return "#f0f8154d";
+            if (seconds < 31536000) return "#f0f8154d";
+            return "yellow";
+        }
+    </script>
+</body>
+</html>

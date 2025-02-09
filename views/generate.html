@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Password Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    
+   
+    <nav class="navbar">
+      <div class="logo">GenzPass</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Research</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="password-container">
+        <h2>Random Password Generator</h2>
+        <div class="input-container">
+          <input
+            type="text"
+            id="input"
+            class="input"
+            placeholder="Create Password"
+            readonly
+          />
+          <i class="far fa-copy fa-2x"></i>
+        </div>
+        <button class="btn">Generate</button>
+      </div>
+      <div class="alert-container active">Password Copied</div>
+    </main>
+
+    <script >const btnEl = document.querySelector(".btn");
+        const inputEl = document.getElementById("input");
+        const copyIconEl = document.querySelector(".fa-copy");
+        const alertContainerEl = document.querySelector(".alert-container");
+        
+        btnEl.addEventListener("click", () => {
+          createPassword();
+        });
+        
+        copyIconEl.addEventListener("click", () => {
+          copyPassword();
+          if (inputEl.value) {
+            alertContainerEl.classList.remove("active");
+            setTimeout(() => {
+              alertContainerEl.classList.add("active");
+            }, 2000);
+          }
+        });
+        
+        function createPassword() {
+          const chars =
+            "0123456789abcdefghijklmnopqrstuvwxtz!@#$%^&*()_+?:{}[]ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          const passwordLength = 14;
+          let password = "";
+          for (let index = 0; index < passwordLength; index++) {
+            const randomNum = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNum, randomNum + 1);
+          }
+          inputEl.value = password;
+          alertContainerEl.innerText = password + " copied!";
+        }
+        
+        function copyPassword() {
+          inputEl.select();
+          inputEl.setSelectionRange(0, 9999);
+          navigator.clipboard.writeText(inputEl.value);
+        }
+        </script>
+  </body>
+</html>
