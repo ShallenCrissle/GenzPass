@@ -29,4 +29,5 @@
   2) Install Dependency: npm install
   3) Run the application using: node server.js or npm start
   4) Access on the browser: Go to http://localhost:3000/ to use the application.
+![Image](https://github.com/user-attachments/assets/cc3789c9-9093-46d3-b179-454b4022ce47)
 
